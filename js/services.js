@@ -6,7 +6,7 @@ angular.module('flightSim.services', [])
     appKey : '656f3a0b5b4bd0b4c2b6ffdd22f7524c',
     method: 'rest',
     version: 'v1',
-    format: 'json'
+    format: 'jsonp'
   };
 
 
