@@ -85,6 +85,10 @@
 		margin-left:auto;
 		margin-right:auto;
 	}
+	.airline-logo{
+		height: 30px;
+		background-color:white;
+	}
 	.delayed{
 		color:red;
 	}

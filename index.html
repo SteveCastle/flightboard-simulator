@@ -31,7 +31,7 @@
 				<tbody>
 					<tr ng-repeat="(key, flight) in flights | orderBy:'city'">
 						<td class=''>{{flight.city}}</td>
-						<td class=''>{{flight.airline}}</td>
+						<td class=''><img ng-src="img/airlines/{{flight.airline | lowercase}}.png" alt="" class="airline-logo"></td>
 						<td class='textRight'>{{flight.flightNumber}}</td>
 						<td class='textCenter'>{{flight.time}}</td>
 						<td class='textCenter'>{{flight.gate}}</td>
@@ -41,7 +41,13 @@
 					</tr>
 					<tr>
 						<td><input type="text" class="form-control" ng-model="newFlight.city"></td>
-						<td><input type="text" class="form-control" ng-model="newFlight.airline"></td>
+						<td>
+						<select class="form-control" ng-model="newFlight.airline">
+							<option value="southwest">Southwest Airlines</option>
+							<option value="united">United Airlines</option>
+							<option value="american">American Airlines</option>
+						</select>
+					</td>
 						<td><input type="text" class="form-control" ng-model="newFlight.flightNumber"></td>
 						<td><input type="text" class="form-control" ng-model="newFlight.time"></td>
 						<td><input type="text" class="form-control" ng-model="newFlight.gate"></td>

@@ -10,6 +10,11 @@ angular.module('flightSim.controllers', ['firebase',])
 		$scope.activeFlight.$remove();
 	};
 	$scope.addFlight = function(){
+		if($scope.newFlight.status === "On Time"){
+			$scope.newFlight.delay = false;
+		}else{
+			$scope.newFlight.delay = true;
+		}
     Flights.$add($scope.newFlight);
 	};
 }]);
