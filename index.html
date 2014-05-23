@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="en" ng-app="flightSim">
+<head>
+	<meta charset="UTF-8">
+	<title>Flight Board Simulator</title>
+	<link href="https://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css" rel="stylesheet">
+	<link rel="stylesheet" type="text/css" href="css/airfonts.css">
+</head>
+<body>
+	<div class="menu">
+		
+	</div>
+	<div class="container">
+		<div class="header">
+			<div class="push-left header"><h1>ARRIVALS</h1></div>
+			<div class="push-right time" ng-controller="TimeController"><span my-current-time="format"></span></div>
+		</div>
+		<div class="display" ng-controller="FlightCtrl">
+			<table>
+				<thead>
+					<tr>
+						<th>CITY</th>
+						<th>AIRLINE</th>
+						<th class='textRight'>FLIGHT</th>
+						<th class='textCenter'>TIME</th>
+						<th class='textCenter' >GATE</th>
+						<th class='textCenter' >STATUS</th>
+						<th>EDIT</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr ng-repeat="(key, flight) in flights | orderBy:'city'">
+						<td class=''>{{flight.city}}</td>
+						<td class=''>{{flight.airline}}</td>
+						<td class='textRight'>{{flight.flightNumber}}</td>
+						<td class='textCenter'>{{flight.time}}</td>
+						<td class='textCenter'>{{flight.gate}}</td>
+						<td class='textCenter status' ng-class="{'delayed': flight.delay}">{{flight.status}}</td>
+						<td class='textCenter status'><button class='btn btn-warning btn-xs'><span class="glyphicon glyphicon-pencil"></span></button>
+						<button class='btn btn-danger btn-xs' ng-click="removeFlight(key)"><span class="glyphicon glyphicon-remove" ></span></button></td>
+					</tr>
+					<tr>
+						<td><input type="text" class="form-control" ng-model="newFlight.city"></td>
+						<td><input type="text" class="form-control" ng-model="newFlight.airline"></td>
+						<td><input type="text" class="form-control" ng-model="newFlight.flightNumber"></td>
+						<td><input type="text" class="form-control" ng-model="newFlight.time"></td>
+						<td><input type="text" class="form-control" ng-model="newFlight.gate"></td>
+						<td>
+						<select class="form-control" ng-model="newFlight.status">
+							<option value="On Time">On Time</option>
+							<option value="Delayed">Delayed</option>
+							<option value="Canceled">Canceled</option>
+						</select>
+						<td><button ng-Click='addFlight()'class="btn btn-primary btn-small">Add <span class="glyphicon glyphicon-plane"></span> </button></td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+	</div>
+	<script src="http://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.6.0/underscore-min.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.0-beta.8/angular.min.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.0-beta.8/angular-resource.min.js">
+	</script>
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.0-beta.8/angular-route.min.js">
+	</script>
+	<script src="https://cdn.firebase.com/v0/firebase.js"></script>
+	<script src="https://cdn.firebase.com/libs/angularfire/0.5.0/angularfire.min.js"></script>
+	<script src="js/app.js"></script>
+	<script src="js/directives.js"></script>
+	<script src="js/controllers.js"></script>
+</body>
+</html>
