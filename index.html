@@ -11,11 +11,11 @@
 		
 	</div>
 	<div class="container">
-		<div class="header">
-			<div class="push-left header"><h1>ARRIVALS</h1></div>
-			<div class="push-right time" ng-controller="TimeController"><span my-current-time="format"></span></div>
+		<div class="header col-lg-12">
+			<div class="pull-left header"><h1>ARRIVALS</h1></div>
+			<div class="pull-right time" ng-controller="TimeController"><span my-current-time="format"></span></div>
 		</div>
-		<div class="display" ng-controller="FlightCtrl">
+		<div class="display col-lg-12" ng-controller="FlightCtrl">
 			<table>
 				<thead>
 					<tr>
@@ -25,7 +25,7 @@
 						<th class='textCenter'>TIME</th>
 						<th class='textCenter' >GATE</th>
 						<th class='textCenter' >STATUS</th>
-						<th>EDIT</th>
+						<th ng-hide="hideControls">EDIT</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -36,11 +36,19 @@
 						<td class='textCenter'>{{flight.time}}</td>
 						<td class='textCenter'>{{flight.gate}}</td>
 						<td class='textCenter status' ng-class="{'delayed': flight.delay}">{{flight.status}}</td>
-						<td class='textCenter status'><button class='btn btn-warning btn-xs'><span class="glyphicon glyphicon-pencil"></span></button>
+						<td class='textCenter status' ng-hide="hideControls"><button class='btn btn-warning btn-xs'><span class="glyphicon glyphicon-pencil"></span></button>
 						<button class='btn btn-danger btn-xs' ng-click="removeFlight(key)"><span class="glyphicon glyphicon-remove" ></span></button></td>
 					</tr>
-					<tr>
-						<td><input type="text" class="form-control" ng-model="newFlight.city"></td>
+					<tr ng-hide="hideControls">
+						<td>
+							<select class="form-control" ng-model="newFlight.city" name="" id="" >
+							  <option value="New York-JFK">New York-JFK</option>
+							  <option value="Cleveland">Cleveland</option>
+							  <option value="Akron-Canton">Akron Canton</option>
+							  <option value="Los Angeles">Los Angeles</option>
+							  <option value="Seattle-Tacoma">Seattle-Tacoma</option>
+						    </select>
+					    </td>
 						<td>
 						<select class="form-control" ng-model="newFlight.airline">
 							<option value="southwest">Southwest Airlines</option>
@@ -61,6 +69,14 @@
 					</tr>
 				</tbody>
 			</table>
+			<label class="checkbox-inline">
+  <input type="checkbox" id="inlineCheckbox3" value="true" ng-model="hideControls"> Hide Controls
+</label>
+		</div>
+		<div ng-controller="Debug">
+			<ul>
+				<li ng-repeat="airport in allAirports">{{airport.city}}</li>
+			</ul>
 		</div>
 	</div>
 	<script src="http://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.6.0/underscore-min.js"></script>
@@ -72,6 +88,7 @@
 	<script src="https://cdn.firebase.com/v0/firebase.js"></script>
 	<script src="https://cdn.firebase.com/libs/angularfire/0.5.0/angularfire.min.js"></script>
 	<script src="js/app.js"></script>
+	<script src="js/services.js"></script>
 	<script src="js/directives.js"></script>
 	<script src="js/controllers.js"></script>
 </body>
