@@ -15,68 +15,8 @@
 			<div class="pull-left header"><h1>ARRIVALS</h1></div>
 			<div class="pull-right time" ng-controller="TimeController"><span my-current-time="format"></span></div>
 		</div>
-		<div class="display col-lg-12" ng-controller="FlightCtrl">
-			<table>
-				<thead>
-					<tr>
-						<th>CITY</th>
-						<th>AIRLINE</th>
-						<th class='textRight'>FLIGHT</th>
-						<th class='textCenter'>TIME</th>
-						<th class='textCenter' >GATE</th>
-						<th class='textCenter' >STATUS</th>
-						<th ng-hide="hideControls">EDIT</th>
-					</tr>
-				</thead>
-				<tbody>
-					<tr ng-repeat="(key, flight) in flights | orderBy:'city'">
-						<td class=''>{{flight.city}}</td>
-						<td class=''><img ng-src="img/airlines/{{flight.airline | lowercase}}.png" alt="" class="airline-logo"></td>
-						<td class='textRight'>{{flight.flightNumber}}</td>
-						<td class='textCenter'>{{flight.time}}</td>
-						<td class='textCenter'>{{flight.gate}}</td>
-						<td class='textCenter status' ng-class="{'delayed': flight.delay}">{{flight.status}}</td>
-						<td class='textCenter status' ng-hide="hideControls"><button class='btn btn-warning btn-xs'><span class="glyphicon glyphicon-pencil"></span></button>
-						<button class='btn btn-danger btn-xs' ng-click="removeFlight(key)"><span class="glyphicon glyphicon-remove" ></span></button></td>
-					</tr>
-					<tr ng-hide="hideControls">
-						<td>
-							<select class="form-control" ng-model="newFlight.city" name="" id="" >
-							  <option value="New York-JFK">New York-JFK</option>
-							  <option value="Cleveland">Cleveland</option>
-							  <option value="Akron-Canton">Akron Canton</option>
-							  <option value="Los Angeles">Los Angeles</option>
-							  <option value="Seattle-Tacoma">Seattle-Tacoma</option>
-						    </select>
-					    </td>
-						<td>
-						<select class="form-control" ng-model="newFlight.airline">
-							<option value="southwest">Southwest Airlines</option>
-							<option value="united">United Airlines</option>
-							<option value="american">American Airlines</option>
-						</select>
-					</td>
-						<td><input type="text" class="form-control" ng-model="newFlight.flightNumber"></td>
-						<td><input type="text" class="form-control" ng-model="newFlight.time"></td>
-						<td><input type="text" class="form-control" ng-model="newFlight.gate"></td>
-						<td>
-						<select class="form-control" ng-model="newFlight.status">
-							<option value="On Time">On Time</option>
-							<option value="Delayed">Delayed</option>
-							<option value="Canceled">Canceled</option>
-						</select>
-						<td><button ng-Click='addFlight()'class="btn btn-primary btn-small">Add <span class="glyphicon glyphicon-plane"></span> </button></td>
-					</tr>
-				</tbody>
-			</table>
-			<label class="checkbox-inline">
-  <input type="checkbox" id="inlineCheckbox3" value="true" ng-model="hideControls"> Hide Controls
-</label>
-		</div>
-		<div ng-controller="Debug">
-			<ul>
-				<li ng-repeat="airport in allAirports">{{airport.city}}</li>
-			</ul>
+		<div class="display col-lg-12" ng-view>
+
 		</div>
 	</div>
 	<script src="http://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.6.0/underscore-min.js"></script>

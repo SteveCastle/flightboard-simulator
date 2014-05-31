@@ -1,14 +1,6 @@
 angular.module('flightSim.controllers', ['firebase',])
 .controller('FlightCtrl', ['$scope','$firebase','Flights','fbURL', 'flightStatApi', function($scope, $firebase, Flights, fbURL, flightStatApi) {
 	$scope.flights = Flights;
-	$scope.getFlights =  flightStatApi.flights()
-	.success(function(data, status, headers){
-		console.log(data);
-	})
-	.error(function(data, status, headers, config){
-
-	});
-
 	$scope.removeFlight = function(id){
 		var flightURL = fbURL + id;
 		$scope.activeFlight = $firebase(new Firebase(flightURL));
@@ -25,6 +17,14 @@ angular.module('flightSim.controllers', ['firebase',])
 		Flights.$add($scope.newFlight);
 	};
 }])
-.controller('Debug',['$scope','flightStatApi', function($scope, flightStatApi){
+.controller('LiveFlights',['$scope','flightStatApi','$routeParams', function($scope, flightStatApi, $routeParams){
+	console.log($routeParams.airport);
+	flightStatApi.flights($routeParams.airport,"none","none")
+	.success(function(data, status, headers){
+		$scope.flights = data.flightStatuses;
+		console.log(data);
+	})
+	.error(function(data, status, headers, config){
 
+	});
 }]);
