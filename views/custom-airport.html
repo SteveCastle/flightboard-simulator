@@ -7,7 +7,7 @@
 						<th class='textCenter'>TIME</th>
 						<th class='textCenter' >GATE</th>
 						<th class='textCenter' >STATUS</th>
-						<th ng-hide="hideControls">EDIT</th>
+						<th ng-hide="hideControls">DELETE</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -18,7 +18,7 @@
 						<td class='textCenter'>{{flight.time}}</td>
 						<td class='textCenter'>{{flight.gate}}</td>
 						<td class='textCenter status' ng-class="{'delayed': flight.delay}">{{flight.status}}</td>
-						<td class='textCenter status' ng-hide="hideControls"><button class='btn btn-warning btn-xs'><span class="glyphicon glyphicon-pencil"></span></button>
+						<td class='textCenter status' ng-hide="hideControls">
 						<button class='btn btn-danger btn-xs' ng-click="removeFlight(key)"><span class="glyphicon glyphicon-remove" ></span></button></td>
 					</tr>
 					<tr ng-hide="hideControls">

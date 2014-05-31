@@ -33,6 +33,7 @@
 		background: -ms-linear-gradient(top,  #0d0e23 12%,#0d0e23 13%,#5673ff 100%); /* IE10+ */
 		background: linear-gradient(to bottom,  #0d0e23 12%,#0d0e23 13%,#5673ff 100%); /* W3C */
 		filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#0d0e23', endColorstr='#5673ff',GradientType=0 ); /* IE6-9 */
+		background-attachment: fixed;
 	}
 
 	h1{

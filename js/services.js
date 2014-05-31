@@ -15,7 +15,9 @@ angular.module('flightSim.services', [])
     return $http.jsonp(queryUrl);
   };
   var getFlights = function(airport,type,date){
-    var queryUrl =baseUrl + "flightstatus/rest/v2/jsonp/airport/status/"+ airport +"/arr/2014/05/30/14" + "?appId="+options.appId+"&appKey=" +options.appKey+ "&callback=JSON_CALLBACK";
+    var currentDate = new Date();
+    var dateString = currentDate.getFullYear() + "/" + ("0" + (currentDate.getMonth() + 1)).slice(-2)+ "/" + ("0" + (currentDate.getDate() + 1)).slice(-2)+ "/" + currentDate.getHours() + "/";
+    var queryUrl =baseUrl + "flightstatus/rest/v2/jsonp/airport/status/"+ airport +"/dep/"+dateString+ "?appId="+options.appId+"&appKey=" +options.appKey+ "&callback=JSON_CALLBACK";
     return $http.jsonp(queryUrl);
   };
 
